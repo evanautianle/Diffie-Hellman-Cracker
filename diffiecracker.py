@@ -1,8 +1,8 @@
-# Add your values here
-A = 3
-B = 9
-p = 13
-g = 7
+# Prompt user for values
+A = int(input("Enter decimal value for A (public key of party 1): "))
+B = int(input("Enter decimal value for B (public key of party 2): "))
+p = int(input("Enter decimal value for p (prime modulus): "))
+g = int(input("Enter decimal value for g (generator): "))
 
 # Input ciphertext
 ciphertext = input("Enter the ciphertext: ")
@@ -18,10 +18,12 @@ def find_exponent(base, mod, target):
 a = find_exponent(g, p, A)
 b = find_exponent(g, p, B)
 
-if a is not None:
-    print(f"a is {a}")
-if b is not None:
-    print(f"b is {b}")
+if a is None or b is None:
+    print("Failed to compute private keys 'a' or 'b'. Ensure the inputs are correct.")
+    exit()
+
+print(f"a is {a}")
+print(f"b is {b}")
 
 # Calculate shared key
 k0 = (B ** a) % p
